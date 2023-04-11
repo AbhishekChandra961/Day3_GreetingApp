@@ -59,4 +59,12 @@ public class MessagesServices{
         else
             return " :: Message ID doesn't Exist ::";
     }
+    public String deleteMessageById(long id){
+        Optional<Messages> message = repository.findById(id);
+        if(message.isPresent()){
+            repository.deleteById(id);
+            return "Deleted Successfully !!!";
+        }
+        return "Message with this ID doesn't Exist";
+    }
 }

@@ -71,4 +71,8 @@ public class MyGreetingController {
         Messages message = new Messages(messageDTO);
         return iServices.editGreetingMessage(message,id);
     }
+    @DeleteMapping("/deleteMessage/{id}")
+    public String deleteMessage(@PathVariable long id){
+        return iServices.deleteMessageById(id);
+    }
 }
