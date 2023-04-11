@@ -1,5 +1,6 @@
 package com.bridgelabz.AssignmentThree.controller;
 
+import com.bridgelabz.AssignmentThree.dto.MessageDTO;
 import com.bridgelabz.AssignmentThree.model.Messages;
 import com.bridgelabz.AssignmentThree.services.MessagesServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,11 @@ public class MyGreetingController {
     public String Messages(@RequestParam(value = "firstName", defaultValue = "") String firstName,
                            @RequestParam(value = "lastName", defaultValue = "") String lastName) {
         return iServices.greetingMessagesTwo(firstName, lastName);
+    }
+    @PostMapping("/post")
+    public String addGreeting(@RequestBody MessageDTO messageDTO){
+        Messages message = new Messages(messageDTO);
+        iServices.greetingMessagesThree(message);
+        return "Saved Successfully!!!";
     }
 }
