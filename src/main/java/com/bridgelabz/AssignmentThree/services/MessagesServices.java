@@ -5,6 +5,7 @@ import com.bridgelabz.AssignmentThree.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -34,5 +35,13 @@ public class MessagesServices{
     public Messages greetingMessagesThree(Messages message){
         Messages userMessage = new Messages(message.getId(), message.getMessage());
         return repository.save(message);
+    }
+
+    public String getMessagesById(long id){
+        Optional<Messages> messageById = repository.findById(id);
+        if(messageById.isPresent()){
+            return "=>>  " + repository.findById(id);
+        }
+        return ":: ID doesn't Exist :: ";
     }
 }
