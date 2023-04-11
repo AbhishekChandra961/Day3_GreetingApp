@@ -49,4 +49,14 @@ public class MessagesServices{
     public List<Messages> getAllMessagesInRepository(){
         return (List<Messages>) repository.findAll();
     }
+    public String editGreetingMessage(Messages message, long id) {
+        Optional<Messages> editMessage = repository.findById(id);
+        if (editMessage.isPresent()) {
+            editMessage.get().setMessage(message.getMessage());
+            repository.save(editMessage.get());
+            return "Message Edited Successfully" + message.getMessage();
+        }
+        else
+            return " :: Message ID doesn't Exist ::";
+    }
 }
