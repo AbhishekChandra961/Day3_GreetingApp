@@ -5,6 +5,7 @@ import com.bridgelabz.AssignmentThree.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -43,5 +44,9 @@ public class MessagesServices{
             return "=>>  " + repository.findById(id);
         }
         return ":: ID doesn't Exist :: ";
+    }
+
+    public List<Messages> getAllMessagesInRepository(){
+        return (List<Messages>) repository.findAll();
     }
 }

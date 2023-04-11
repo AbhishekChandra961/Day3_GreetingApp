@@ -6,7 +6,7 @@ import com.bridgelabz.AssignmentThree.services.MessagesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -59,5 +59,11 @@ public class MyGreetingController {
     @GetMapping("/getMessage/{id}")
     public String getMessage(@PathVariable long id) {
         return iServices.getMessagesById(id);
+    }
+
+    //////////////////// ::  UC-06  :: ////////////////////
+    @GetMapping("/getAllMessage")
+    public List<Messages> getAllMessages(){
+        return iServices.getAllMessagesInRepository();
     }
 }
