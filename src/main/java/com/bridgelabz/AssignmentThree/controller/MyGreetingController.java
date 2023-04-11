@@ -1,6 +1,8 @@
 package com.bridgelabz.AssignmentThree.controller;
 
 import com.bridgelabz.AssignmentThree.model.Messages;
+import com.bridgelabz.AssignmentThree.services.MessagesServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -21,5 +23,15 @@ public class MyGreetingController {
     public Messages greetings(@PathVariable String name) {
         return new Messages(counter.incrementAndGet(), String.format(template, name));
     }
-
+    @Autowired
+    private MessagesServices iServices;
+    @GetMapping("/service")
+    public Messages greeting() {
+        return iServices.greetingMessages();
+    }
+    @GetMapping(value = {"/printname","/"})
+    public String Messages(@RequestParam(value = "firstName", defaultValue = "") String firstName,
+                           @RequestParam(value = "lastName", defaultValue = "") String lastName) {
+        return iServices.greetingMessagesTwo(firstName, lastName);
+    }
 }

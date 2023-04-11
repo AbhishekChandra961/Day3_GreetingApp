@@ -25,9 +25,16 @@ public class Messages {
     }
 
     public void setMessage(String message) {
+
         this.message = message;
     }
-
+    @Override
+    public String toString() {
+        return "Messages :: {" +'\n'+
+                "id = " + id +
+                "  ||   message = '" + message + '\n' +
+                '}';
+    }
 
 }
 
